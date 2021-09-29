@@ -5,7 +5,10 @@
                 <Card :poster="el.poster" :title="el.title" :author="el.author" :genre="el.genre" :year="el.year"/>
             </div>
         </div>
-        <div class="d-none" v-else></div>
+        <div class="loader" v-else>
+            <img src="../assets/loader.svg" alt="">
+            <p>Caricamento...</p>
+        </div>
         
     </div>
 </template>
@@ -35,7 +38,7 @@ export default {
     this.cardContent = res.data.response
     setTimeout(()=>{
         this.inLoad = true
-    },1000)
+    },1500)
     });
 }
 
@@ -43,10 +46,33 @@ export default {
 </script>
 
 <style lang="scss">
+@import './style/variables';
 
 
-div{
+.loader{
     width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
+    p{
+        font-size: 1.2rem;
+        color:  $text;
+        margin-top: 10px;
+    }
+
+    img{
+        width: 10%;
+        animation: 2s linear infinite spin
+    }
 }
+
+@keyframes spin {
+    from {rotate: 0deg;}
+    to{rotate: 360deg}
+}
+
+
 </style>
