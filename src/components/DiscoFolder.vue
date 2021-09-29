@@ -1,10 +1,11 @@
 <template>
     <div class="container w-75">
-        <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 m-auto">
+        <div v-if="inLoad == true" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 m-auto">
             <div class="col" v-for="(el, index) in cardContent" :key="index">
                 <Card :poster="el.poster" :title="el.title" :author="el.author" :genre="el.genre" :year="el.year"/>
             </div>
         </div>
+        <div class="d-none" v-else></div>
         
     </div>
 </template>
@@ -24,6 +25,7 @@ export default {
     data: function(){
     return{
         cardContent: [],
+        inLoad: false
     }
 },
 
@@ -31,6 +33,9 @@ export default {
     axios.get('https://flynn.boolean.careers/exercises/api/array/music')
     .then(res => {
     this.cardContent = res.data.response
+    setTimeout(()=>{
+        this.inLoad = true
+    },1000)
     });
 }
 
