@@ -1,28 +1,48 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+      <Head />
+
+      <DiscoFolder />
+
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
+import Head from './components/Head.vue'
+import DiscoFolder from './components/Head.vue'
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Head,
+    DiscoFolder,
+  },
+  data: function(){
+    return{
+      cardContent: [],
+    }
+  },
+
+  mounted: function(){
+    axios.get('https://flynn.boolean.careers/exercises/api/array/music')
+    .then(res => {
+    this.cardContent = res.data.response
+    });
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import './components/style/general.scss';
+@import './components/style/variables.scss';
+@import './components/style/variables';
+
+#app{
+  height: calc(100vh );
+  background-color: $bodyColor;
 }
 </style>
