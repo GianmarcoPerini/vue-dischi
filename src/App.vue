@@ -2,17 +2,17 @@
   <div id="app">
 
       <Head />
-
+    <div class="disco-box">
       <DiscoFolder />
+    </div>
 
 
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 import Head from './components/Head.vue'
-import DiscoFolder from './components/Head.vue'
+import DiscoFolder from './components/DiscoFolder.vue'
 
 
 export default {
@@ -21,18 +21,7 @@ export default {
     Head,
     DiscoFolder,
   },
-  data: function(){
-    return{
-      cardContent: [],
-    }
-  },
 
-  mounted: function(){
-    axios.get('https://flynn.boolean.careers/exercises/api/array/music')
-    .then(res => {
-    this.cardContent = res.data.response
-    });
-  }
 }
 </script>
 
@@ -44,5 +33,13 @@ export default {
 #app{
   height: calc(100vh );
   background-color: $bodyColor;
+}
+
+.disco-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $bodyColor;
+  height: calc(100% - 66px);
 }
 </style>
