@@ -1,6 +1,6 @@
 <template>
-    <div class="container w-75">
-        <div v-if="inLoad == true" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 m-auto">
+    <div class="container">
+        <div v-if="inLoad == true" class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 g-4">
             <div class="col" v-for="(el, index) in cardContent" :key="index">
                 <Card :poster="el.poster" :title="el.title" :author="el.author" :genre="el.genre" :year="el.year"/>
             </div>

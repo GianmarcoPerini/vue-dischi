@@ -1,14 +1,13 @@
 <template>
-    <div class="single-card-box">
-        <div class="card-img-oiu">
+    <div class="single-card">
+        <div class="img-box mb-4">
             <img :src="poster" alt="">
         </div>
-        <h4 class="text-white text-center mt-4">{{title}}</h4>
-        <div class="info text-center mt-2">
-            <p class="m-0 text-secondary">{{author}}</p>
-            <p class="m-0 text-secondary">{{year}}</p>
+        <div class="info text-center">
+            <h4 class="text-white mb-4">{{title}}</h4>
+            <p class="m-0">{{author}}</p>
+            <p class="m-0">{{year}}</p>
         </div>
-
     </div>
 </template>
 
@@ -29,36 +28,29 @@ export default {
 <style lang="scss">
 @import './style/variables.scss';
 
-
-.single-card-box{
-    // width: 90%;
-
-    min-height: 450px;
+.single-card{
+    width: 100%;
+    aspect-ratio: 1/1.7;
     background-color: $cardColor;
-    display: flex;
-    align-items: center;
-    padding-top: 15px;
-    padding-bottom: 20px;
-    flex-direction: column;
-    margin-bottom: 10px;
+    padding-top: 20px;
 
     p{
-        font-size: 1.1rem;
+        color: $text;
     }
 
-    .card-img-oiu{
-        width: 90%;
-        aspect-ratio: 1/1;
-        margin-bottom: 10px;
-        overflow: hidden;
+    .img-box{
+    width: 80%;
+    margin: 0 auto;
+    aspect-ratio: 1/1;
 
         img{
-            width: 100%;
-            height: 100%;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
         }
     }
-
-
 }
+
+
 
 </style>
