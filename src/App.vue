@@ -31,15 +31,15 @@ export default {
 @import './components/style/variables';
 
 #app{
-  height: calc(100vh );
+  // height: calc(100vh );
   background-color: $bodyColor;
 }
 
 .disco-box{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
   background-color: $bodyColor;
-  height: calc(100% - 66px);
+  // height: calc(100% - 66px);
 }
 </style>

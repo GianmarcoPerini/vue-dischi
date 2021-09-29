@@ -17,6 +17,7 @@ export default {
 header{
     padding: 8px;
     background-color: $headerColor;
+    margin-bottom: 50px;
 
     .logo{
         width: 50px;

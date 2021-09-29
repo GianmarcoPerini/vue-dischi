@@ -3,9 +3,12 @@
         <div class="card-img-oiu">
             <img :src="poster" alt="">
         </div>
-        <p class="text-white text-center">{{title}}</p>
-        <p class="m-0 text-secondary">{{author}}</p>
-        <p class="m-0 text-secondary">{{year}}</p>
+        <h4 class="text-white text-center mt-4">{{title}}</h4>
+        <div class="info text-center mt-2">
+            <p class="m-0 text-secondary">{{author}}</p>
+            <p class="m-0 text-secondary">{{year}}</p>
+        </div>
+
     </div>
 </template>
 
@@ -28,16 +31,20 @@ export default {
 
 
 .single-card-box{
-    width: 90%;
-    min-height: 255px;
-    min-height: 300px;
+    // width: 90%;
+
+    min-height: 450px;
     background-color: $cardColor;
     display: flex;
     align-items: center;
     padding-top: 15px;
+    padding-bottom: 20px;
     flex-direction: column;
     margin-bottom: 10px;
 
+    p{
+        font-size: 1.1rem;
+    }
 
     .card-img-oiu{
         width: 90%;
@@ -48,9 +55,10 @@ export default {
         img{
             width: 100%;
             height: 100%;
-
         }
     }
+
+
 }
 
 </style>
