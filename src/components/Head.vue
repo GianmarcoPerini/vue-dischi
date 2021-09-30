@@ -1,11 +1,11 @@
 <template>
     <header>
-        <div class="logo">
+        <div class="logo" @click="log(updateGenreData)">
             <img src="../assets/logo.png" alt="">
         </div>
 
         
-        <GenreMenu :genre="getUniqueGenre()" @search="getFilterGenre"/>
+        <GenreMenu :genre="getUniqueGenre()" @search="getFilterGenre" :filter="updateGenreData()"/>
         
         <ArtistMenu :artist="getUniqueArtist()"/>
         
@@ -34,7 +34,7 @@ export default {
     methods:{
 
         getFilterGenre: function(x){
-            console.log('chiamato ' + x);
+            this.find = x
         },
 
         getUniqueGenre: function(){
@@ -63,7 +63,9 @@ export default {
     },
 
     computed: {
-
+        updateGenreData: function(){
+            return this.selectContent.filter(el => el.genre.toLowerCase().includes(this.find.toLowerCase()))
+        },
     },
 
     mounted: function(){
