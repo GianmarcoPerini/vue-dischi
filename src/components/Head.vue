@@ -1,15 +1,13 @@
 <template>
     <header>
-        <div class="logo" @click="$emit('update', updateGenreData)">
+        
+        <div class="logo">
             <img src="../assets/logo.png" alt="">
         </div>
 
-        
-        <GenreMenu :genre="getUniqueGenre()" @search="getFilterGenre" />
+        <GenreMenu :genre="getUniqueGenre()" @search="getFilterGenre"/>
         
         <ArtistMenu :artist="getUniqueArtist()"/>
-        
-
 
     </header>
 </template>
@@ -35,6 +33,7 @@ export default {
 
         getFilterGenre: function(x){
             this.find = x
+            this.$emit('update', x)
         },
 
         getUniqueGenre: function(){
@@ -62,12 +61,7 @@ export default {
         }
     },
 
-    computed: {
-        updateGenreData: function(){
-            if(this.find == 'All') return this.dataFolder
-            return this.dataFolder.filter(el => el.genre.toLowerCase().includes(this.find.toLowerCase()))
-        },
-    },
+
 
 
 

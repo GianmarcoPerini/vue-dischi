@@ -1,8 +1,10 @@
 <template>
     
-        <select name="genre" id="genre-select" class="ms-5">
-            <option value="All" @click="$emit( 'search', ret('All'))">All</option>
-            <option v-for="(el, i) in genre" :key="i" value="" @click="$emit( 'search', ret(el))"> {{el}} </option>
+        <select name="genre" id="genre-select" class="ms-5" @change="$emit('search', filtro)" v-model="filtro">
+
+            <option value="All" >All</option>
+
+            <option v-for="(el, i) in genre" :key="i" :value="el" > {{el}} </option>
         </select>
     
 </template>
@@ -14,12 +16,12 @@ export default {
 
     data: function(){
         return{
-
-
+            filtro: '',
         }
     },
 
     methods: {
+
 
         genreFilter: function(){
 
