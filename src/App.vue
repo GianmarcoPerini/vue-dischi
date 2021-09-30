@@ -1,9 +1,9 @@
 <template>
   <div id="app">
 
-      <Head :dataFolder="selectContent"/>
+      <Head :dataFolder="selectContent" @update="upadatedArr"/>
     <div class="disco-box">
-      <DiscoFolder :dataFolder="selectContent"/>
+      <DiscoFolder :dataFolder="filterArr"/>
     </div>
 
 
@@ -25,6 +25,14 @@ export default {
   data: function(){
     return{
       selectContent: [],
+      filterArr: [],
+    }
+  },
+
+  methods: {
+    upadatedArr: function(x){
+      this.filterArr = x
+      console.log(this.filterArr);
     }
   },
 
@@ -32,7 +40,7 @@ export default {
     axios.get('https://flynn.boolean.careers/exercises/api/array/music').then(res => 
         this.selectContent = [...res.data.response]
     );
-  }
+  },
 
 }
 </script>

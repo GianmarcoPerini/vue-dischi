@@ -1,6 +1,6 @@
 <template>
     <header>
-        <div class="logo" @click="log(updateGenreData)">
+        <div class="logo" @click="$emit('update', updateGenreData)">
             <img src="../assets/logo.png" alt="">
         </div>
 
@@ -65,7 +65,6 @@ export default {
     computed: {
         updateGenreData: function(){
             if(this.find == 'All') return this.dataFolder
-            
             return this.dataFolder.filter(el => el.genre.toLowerCase().includes(this.find.toLowerCase()))
         },
     },
