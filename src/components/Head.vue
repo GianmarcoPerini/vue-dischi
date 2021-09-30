@@ -4,22 +4,18 @@
             <img src="../assets/logo.png" alt="">
         </div>
 
-        <select name="genre" id="genre-select" class="ms-5">
-            <option value="All">All</option>
-            <GenreMenu v-for="(el, i) in getUniqueGenre()" :key="i" :genre="el"/>
-        </select>
-
-        <select name="artist" id="artist-select" class="ms-5" @click="getUniqueArtist()">
-            <option value="All">All</option>
-            <ArtistMenu v-for="(el, i) in getUniqueArtist()" :key="i" :artist="el"/>
-        </select>
+        
+        <GenreMenu :genre="getUniqueGenre()" @search="getFilterGenre"/>
+        
+        <ArtistMenu :artist="getUniqueArtist()"/>
+        
 
 
     </header>
 </template>
 
 <script>
-import GenreMenu from "./SelectMenu";
+import GenreMenu from "./GenreMenu";
 import ArtistMenu from './ArtistMenu'
 import axios from 'axios'
 export default {
@@ -31,10 +27,16 @@ export default {
     data: function(){
         return{
             selectContent: [],
+            find: '',
         }
     },
 
     methods:{
+
+        getFilterGenre: function(x){
+            console.log('chiamato ' + x);
+        },
+
         getUniqueGenre: function(){
             let uniqueGenre = [];
             this.selectContent.forEach(el =>{
@@ -58,6 +60,10 @@ export default {
         log: function(x){
             console.log(x);
         }
+    },
+
+    computed: {
+
     },
 
     mounted: function(){
