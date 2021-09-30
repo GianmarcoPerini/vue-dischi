@@ -1,9 +1,9 @@
 <template>
   <div id="app">
 
-      <Head />
+      <Head :dataFolder="selectContent"/>
     <div class="disco-box">
-      <DiscoFolder />
+      <DiscoFolder :dataFolder="selectContent"/>
     </div>
 
 
@@ -13,6 +13,7 @@
 <script>
 import Head from './components/Head.vue'
 import DiscoFolder from './components/DiscoFolder.vue'
+import axios from 'axios'
 
 
 export default {
@@ -21,6 +22,17 @@ export default {
     Head,
     DiscoFolder,
   },
+  data: function(){
+    return{
+      selectContent: [],
+    }
+  },
+
+  mounted: function(){
+    axios.get('https://flynn.boolean.careers/exercises/api/array/music').then(res => 
+        this.selectContent = [...res.data.response]
+    );
+  }
 
 }
 </script>

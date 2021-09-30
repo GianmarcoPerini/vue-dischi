@@ -5,7 +5,7 @@
         </div>
 
         
-        <GenreMenu :genre="getUniqueGenre()" @search="getFilterGenre" :filter="updateGenreData()"/>
+        <GenreMenu :genre="getUniqueGenre()" @search="getFilterGenre" />
         
         <ArtistMenu :artist="getUniqueArtist()"/>
         
@@ -17,16 +17,16 @@
 <script>
 import GenreMenu from "./GenreMenu";
 import ArtistMenu from './ArtistMenu'
-import axios from 'axios'
+
 export default {
     name: 'Head',
+    props:['dataFolder'],
     components: {
         GenreMenu,
         ArtistMenu,
     },
     data: function(){
         return{
-            selectContent: [],
             find: '',
         }
     },
@@ -39,9 +39,9 @@ export default {
 
         getUniqueGenre: function(){
             let uniqueGenre = [];
-            this.selectContent.forEach(el =>{
+            this.dataFolder.forEach(el =>{
                 if(uniqueGenre.indexOf(el.genre) == -1){
-                    uniqueGenre.push(el.genre)
+                    return uniqueGenre.push(el.genre)
                 }
             })
             return uniqueGenre
@@ -49,7 +49,7 @@ export default {
 
         getUniqueArtist: function(){
             let uniqueArtist = [];
-            this.selectContent.forEach(el =>{
+            this.dataFolder.forEach(el =>{
                 if(uniqueArtist.indexOf(el.author) == -1){
                     uniqueArtist.push(el.author)
                 }
@@ -64,15 +64,13 @@ export default {
 
     computed: {
         updateGenreData: function(){
-            return this.selectContent.filter(el => el.genre.toLowerCase().includes(this.find.toLowerCase()))
+            if(this.find == 'All') return this.dataFolder
+            
+            return this.dataFolder.filter(el => el.genre.toLowerCase().includes(this.find.toLowerCase()))
         },
     },
 
-    mounted: function(){
-        axios.get('https://flynn.boolean.careers/exercises/api/array/music').then(res => {
-            this.selectContent = [...res.data.response]
-        });
-    }
+
 
 }
 </script>
